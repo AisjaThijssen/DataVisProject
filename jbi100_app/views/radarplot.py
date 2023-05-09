@@ -58,7 +58,6 @@ class Radar(html.Div):
                     radialaxis=dict(
                         visible=True,
                         range=[0, 1],
-                        theta=theta_layout
                     ),
                     angularaxis=dict(
                         visible=True,
