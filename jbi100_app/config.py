@@ -1,5 +1,6 @@
 # Here you can add any global configuations
 
+# These lists show what features to use for which position in the stacked barchart
 goalkeeper_stats = ['gk_goals_against_per90', 'gk_save_pct', 'gk_clean_sheets_pct', 'gk_pens_save_pct',
                     'gk_avg_distance_def_actions']
 defender_stats = ['tackles_won_pct', 'dribble_tackles_pct', 'blocks_per90', 'interceptions_per90', 'clearances_per90']

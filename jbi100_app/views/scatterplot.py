@@ -9,6 +9,7 @@ class Scatterplot(html.Div):
         self.feature_y = feature_y
         self.selected_players = []
 
+        # pre-create all filtered datasets to reduce latancy, one for every position
         positions_to_encoded_positions = {
             'goalkeeper': ['GK'],
             'defender': ['DF', 'FB', 'LB', 'RB', 'CB'],
@@ -17,6 +18,7 @@ class Scatterplot(html.Div):
         }
 
         dfs = {}
+        # filter the datasets on position
         for key, value in positions_to_encoded_positions.items():
             position = df
             position = position[position['position'].isin(positions_to_encoded_positions[key])]
@@ -37,6 +39,8 @@ class Scatterplot(html.Div):
         )
 
     def update(self, selected_position, added_player):
+        # if the selected position is None which is when we reset the dropdown or at the start generate an empty
+        # scatterplot with the same size as the filled one
         if selected_position is None:
             return go.Figure(
                 layout=go.Layout(
@@ -56,8 +60,10 @@ class Scatterplot(html.Div):
             'forward': self.for_df
         }
 
+        # pick the dataset for the selected position
         df = positions_to_df[selected_position].reset_index(drop=True)
 
+        # create the scatterplot
         x_values = df[self.feature_x]
         y_values = df[self.feature_y]
         self.fig.add_trace(go.Scatter(
@@ -74,16 +80,20 @@ class Scatterplot(html.Div):
         self.fig.update_xaxes(fixedrange=True)
         self.fig.update_yaxes(fixedrange=True)
 
+        # if no player is added make sure all players are displayed as selected and reset the selected players list to
+        # an empty list as this means the position has changed
         if added_player is None:
             selected_index = df.index
             self.selected_players = []
         else:
+            # make sure only 2 players are in the selected players list
             if len(self.selected_players) < 2:
                 self.selected_players.append(added_player)
             else:
                 self.selected_players = [self.selected_players[-1], added_player]
             selected_index = df[df['player'].isin(self.selected_players)].index
 
+        # make the selected players appear as selected
         self.fig.data[0].update(
             selectedpoints=selected_index,
 

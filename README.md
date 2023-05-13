@@ -1,8 +1,9 @@
-# JBI100-example-app
+# QuickMove for Scouts
 
 ## About this app
 
-You can use this as a basic template for your JBI100 visualization project.
+This app shows the skills of different soccer players and allows scouts to compare 
+different players.
 
 ## Requirements
 
@@ -14,13 +15,12 @@ You can use this as a basic template for your JBI100 visualization project.
 We suggest you to create a virtual environment for running this app with Python 3. Clone this repository 
 and open your terminal/command prompt in the root folder.
 
-
 download a zip file of this folder, unzip it and copy it to a folder of choice on your computer
 
 open a command prompt and run the following commands:
 
 ```
-> cd <path to you folder of choice>\dashframework-main\dashframework-main 
+> cd <path to you folder of choice>\DataVisProject\DataVisProject
 > python -m venv venv
 
 ```
