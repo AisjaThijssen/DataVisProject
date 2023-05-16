@@ -104,7 +104,7 @@ class Barchart(html.Div):
         self.fig.update_layout(width=700, height=550, barmode='stack', clickmode='event+select', yaxis_title="Players")
         self.fig.update_xaxes(showticklabels=False)
 
-        # added_player indicates that a player was clicked and must be highlighted if there is none the selected points
+        # added_player indicates that a player was clicked and must be highlighted, if this is None the selected points
         # are set to all 10 players shown and the selected players is an empty list as no-one is selected. This only
         # happens when a new position is chosen and the plot is reset
         if added_player is None:
